@@ -1,0 +1,191 @@
+body{
+  background: $bodyBackground;
+  padding: 0;
+  margin: 0;
+}
+
+#content{
+  background: $contentBackground;
+  padding: 16px;
+  margin: 0 auto;
+  width: 960px;
+
+  .img-left {
+    margin-right: 18.5px;
+    float: left;
+    margin-bottom: 7px;
+  }
+
+  .img-right {
+    float: right;
+    margin-left: 15px;
+  }
+  @include contentView($headingText);
+  .brief {
+    @include briefView($briefHeight, $briefWidth, $briefBackground, $briefPadding);
+    @if $briefMargin {
+      padding-top: 25px;
+      padding-bottom: 25px;
+      margin-bottom: 40px;
+      text-indent: 20px;
+    } @else {
+      margin-right: 30px;
+    }
+  }
+
+  a {
+    color: $linkColor;
+  }
+
+  table {
+    @include tableView($tableHead, $tableColor);
+    margin-left: 10px;
+    border-collapse: collapse;
+    width: 100%;
+    caption {
+      color: #000;
+      text-align: right;
+    }
+    th {
+      font-weight: normal;
+      padding: 10px 20px;
+      text-transform: uppercase;
+      &:nth-child(-n+2) {
+        border-right: 1px solid #fff;
+      }
+    }
+
+    td {
+      padding: 10px 20px;
+    }
+
+    tr {
+      text-align: left;
+      &:first-child {
+        border: none;
+      }
+    }
+  }
+
+  form {
+    width: 100%;
+    @include formInputsStyle($rowWidth, $borderColorInput);
+    label {
+      color: lighten($formColors, 10%);
+      display: inline-block;
+      margin-bottom: 3px;
+      text-transform: uppercase;
+    }
+
+    textarea {
+      height: 162px;
+      width: 100%;
+      margin-bottom: 25px;
+    }
+
+    .sent-button {
+      @include buttonView($textColorButton, $borderColor);
+      background: $buttonBackground;
+      width: 240px;
+      padding: 13px 0;
+      display: block;
+      text-decoration: none;
+      text-transform: uppercase;
+      text-align: center;
+      cursor: pointer;
+      font-family: Arial;
+      font-size: 18px;
+    }
+  }
+}
+
+@mixin contentView($headingText) {
+  h1 {
+    text-align: center;
+    color: $headingText;
+  }
+
+  h2 {
+    color: $headingText;
+  }
+
+  img {
+    padding: 1px;
+    border: 3px solid $headingText;
+  }
+}
+
+@mixin briefView($briefHeight, $briefWidth, $briefBackground, $briefPadding) {
+  height: $briefHeight;
+  width: $briefWidth;
+  float: left;
+  padding: $briefPadding;
+  background-color: $briefBackground;
+}
+
+@mixin tableView($tableColor, $tableHead) {
+  background: $tableColor;
+  th {
+    background-color: $tableHead;
+  }
+
+  tr {
+    border-bottom: 1px solid $tableHead;
+  }
+}
+
+@mixin formInputsStyle($rowWidth, $borderColorInput) {
+  input[type=text], select, textarea {
+    border: 1px solid $borderColorInput;
+    box-sizing: border-box;
+    margin-bottom: 7px;
+    padding: 3px;
+    display: block;
+  }
+
+  .main-form--row1 {
+    height: 50px;
+    width: $rowWidth;
+    margin-bottom: 3px;
+    float: left;
+  }
+
+  .main-form--row2 {
+    height: 50px;
+    width: $rowWidth;
+    margin-bottom: 3px;
+    float: left;
+  }
+
+  .main-form__name {
+    width: 100%;
+    float: left;
+  }
+
+  .main-form--label__surname {
+    &.mg-left {
+      margin-left: 3px;
+    }
+  }
+
+  .main-form__surname {
+    width: 477px;
+    float: left;
+    &.mg-left {
+      margin-left: 3px;
+    }
+  }
+
+  .main-form__email {
+    width: 100%;
+  }
+
+  .main-form__mark {
+    width: 100%;
+  }
+}
+
+@mixin buttonView($textColorButton, $borderColor) {
+  border: 1.2px solid $borderColor;
+  color: $textColorButton;
+}
